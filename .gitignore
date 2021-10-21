@@ -1,0 +1,35 @@
+*.*~
+*[-\.]lock.json
+
+.vscode
+.vs
+.idea
+
+# Database-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.iml
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Build results
+build
+build
+src/js/
