@@ -1,0 +1,41 @@
+{
+"env": {
+"browser": true,
+"es2021": true
+},
+"extends": [
+"airbnb-typescript/base",
+"eslint:recommended",
+"plugin:@typescript-eslint/recommended"
+],
+"parser": "@typescript-eslint/parser",
+"parserOptions": {
+"project": "./tsconfig.json"
+},
+"plugins": [
+"@typescript-eslint"
+],
+"ignorePatterns": ["*.config.js", "node_modules/", "dist/"],
+"rules": {
+"no-plusplus": "off",
+  "@typescript-eslint/no-var-requires": "off",
+  "import/no-extraneous-dependencies": "off",
+  "@typescript-eslint/no-shadow": "off",
+  "@typescript-eslint/naming-convention": "off",
+  "consistent-return": "off",
+  "no-underscore-dangle": "off",
+  "no-console": "warn",
+  "max-len": ["warn", { "code": 120 }],
+"indent": ["warn", 2, {
+"SwitchCase": 1
+}],
+"@typescript-eslint/indent": ["warn", 2, {
+"SwitchCase": 1
+}],
+"import/prefer-default-export": "off",
+  "max-classes-per-file": ["error", 2],
+"no-param-reassign": ["error", {
+"props": false
+}]
+}
+}

@@ -1,0 +1,383 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "English for kids",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Category",
+      "description": "Category endpoints"
+    },
+    {
+      "name": "Cards",
+      "description": "Cards endpoints"
+    },
+    {
+      "name": "User",
+      "description": "JWT user authorization"
+    }
+  ],
+  "paths": {
+    "/api/cards/get": {
+      "get": {
+        "summary": "get all cards",
+        "tags": ["Cards"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n    \"cards\": [\n        {\n            \"_id\": \"60e54278db646f2f58d7a274\",\n            \"word\": \"beef\",\n            \"translation\": \"говядина\",\n            \"category\": {\n                \"_id\": \"60e54259db646f2f58d7a270\",\n                \"name\": \"Food\",\n                \"image\": \"https://res.cloudinary.com/english-club/image/upload/v1625637471/dqlp4ftqsm4kpo21lfye.jpg\",\n                \"image_id\": \"dqlp4ftqsm4kpo21lfye\",\n                \"createdAt\": \"2021-07-07T05:57:45.367Z\",\n                \"updatedAt\": \"2021-07-07T05:57:45.367Z\",\n                \"__v\": 0\n            },\n            \"image\": \"https://res.cloudinary.com/english-club/image/upload/v1625637502/qo7dkz5u5cxc50ufnqmp.jpg\",\n            \"image_id\": \"qo7dkz5u5cxc50ufnqmp\",\n            \"audio\": \"https://res.cloudinary.com/english-club/video/upload/v1625637503/rtxlyviswsvvvwsry3ad.mp3\",\n            \"audio_id\": \"rtxlyviswsvvvwsry3ad\",\n            \"createdAt\": \"2021-07-07T05:58:16.861Z\",\n            \"updatedAt\": \"2021-07-07T05:58:16.861Z\",\n            \"__v\": 0\n        }\n    ],\n    \"count\": 1\n}t"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cards/create": {
+      "post": {
+        "summary": "add new card",
+        "tags": ["Cards"],
+        "requestBody": {
+          "description": "Card Object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Card"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n\"word\":\"beef\",\n\"translation:\"говядина\",\n\"image\": \"beef.jpg\",\n\"audio\": \"beef.mp3\",\n\"category\": \"60e54259db646f2f58d7a270\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cards/put/{_id}": {
+      "put": {
+        "summary": "Update сard with given ID",
+        "tags": [
+          "Cards"
+        ],
+        "requestBody": {
+          "description": "Cards Object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Card"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "description": "Card id",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "description": "parameter id needed",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n\"word\":\"beef\",\n\"translation:\"говядина\",\n\"image\": \"beef.jpg\",\n\"audio\": \"beef.mp3\",\n\"category\": \"60e54259db646f2f58d7a270\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cards/delete/{id}": {
+      "delete": {
+        "summary": "delete card by id",
+        "tags": ["Cards"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "description": "Card id",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "description": "parameter id needed",
+        "responses": {
+          "204": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/categories/get": {
+      "get": {
+        "summary": "get all categories",
+        "tags": ["Category"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n    \"categories\": [\n        {\n            \"_id\": \"60e54259db646f2f58d7a270\",\n            \"name\": \"Food\",\n            \"image\": \"https://res.cloudinary.com/english-club/image/upload/v1625637471/dqlp4ftqsm4kpo21lfye.jpg\",\n            \"image_id\": \"dqlp4ftqsm4kpo21lfye\",\n            \"createdAt\": \"2021-07-07T05:57:45.367Z\",\n            \"updatedAt\": \"2021-07-07T05:57:45.367Z\",\n            \"__v\": 0\n        }\n    ],\n    \"count\": 1\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories/create": {
+      "post": {
+        "summary": "add new category",
+        "tags": ["Category"],
+        "requestBody": {
+          "description": "Category Object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n\"name\":\"Food\",\n\"image\": \"beef.jpg\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories/put/{_id}": {
+      "put": {
+        "summary": "update category by id",
+        "tags": ["Category"],
+        "requestBody": {
+          "description": "Category Object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "description": "Category id",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "description": "parameter id needed",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n\"name\":\"Food\",\n\"image\": \"beef.jpg\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories/delete/{_id}": {
+      "delete": {
+        "summary": "delete category by id",
+        "tags": ["Category"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "description": "Category id",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "description": "parameter id needed",
+        "responses": {
+          "204": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/user/register": {
+      "post": {
+        "summary": "register a new User",
+        "tags": ["User"],
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n    \"username\":\"nikita\",\n    \"password\": \"123456\",\n     \"password2\":\"123456\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "summary": "Sign in in admin panel",
+        "tags": ["User"],
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "{\n    \"message\": \"Auth successful\",\n    \"token\": \"eyJhbGciOiHIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pa2l0YTEiLCJpYXQiOjE2MjU2NDEyNzMsImV4cCI6MzI1MTY0MjU0NiwiaXNzIjoiY29vbElzc3VlciJ9.eBCXf9O0fNhzLNLUV1XQQt_zj49AhyxYjt78gzB1R3w\",\n    \"user\": {\n        \"_id\": \"60e5505b8d11ea11748ef107\",\n        \"username\": \"nikita1\",\n        \"password\": \"$2a$10$92rkfsgST2jgSZdv45BruOJPBIC9VZzogsuD9TaNjX53bAMdHBXyq\",\n        \"createdAt\": \"2021-07-07T06:57:31.784Z\",\n        \"updatedAt\": \"2021-07-07T06:57:31.784Z\",\n        \"__v\": 0\n    }\n}",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "object",
+                  "example": "{\n    \"username\": \"nikita1\",\n    \"password\": \"123456\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+
+    "schemas":
+      {
+        "_id": {
+              "type": "string"
+        },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "word": {
+            "type": "string"
+          },
+          "translation": {
+            "type": "string"
+          },
+          "image": {
+            "type": "file"
+          },
+          "audio": {
+            "type": "file"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      },
+        "Category": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "image": {
+              "type": "file"
+            }
+          }
+        },
+        "RegisterUser": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "password2": {
+              "type": "string"
+            }
+          }
+        },
+        "LoginUser": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        }
+      }
+  }
+}
